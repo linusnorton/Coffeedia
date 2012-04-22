@@ -17,7 +17,7 @@ class RateController
     review[username] = score
     update = { $addToSet: { tags: { $each: tagList }, review: review } }
     query = { _id: @request.param 'name' }
-    console.log update, query
+    
     collection.update query, update, { upsert: true, safe: true }, this.display
 
   # Display result of update

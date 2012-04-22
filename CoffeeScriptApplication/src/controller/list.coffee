@@ -11,7 +11,8 @@ class ListController
     if err?
       @response.send err.message
     else
-      collection.find().toArray this.display
+      name = @request.param "name", ''
+      collection.find({ _id: { $regex : '^' + name, $options: 'i' } }).toArray this.display
        
   # Display the items 
   display: (err, items) =>
