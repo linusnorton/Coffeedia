@@ -2,6 +2,8 @@
 class RateController 
   constructor: (@dic, @request, @response) ->
   
+  # /coffee/rate
+  #
   # Connect to mongo and call the list function
   run: =>
     @dic.mongo.collection 'coffee', this.insert
@@ -15,8 +17,8 @@ class RateController
     review[username] = score
     update = { $addToSet: { tags: { $each: tagList }, review: review } }
     query = { _id: @request.param 'name' }
-    
-    collection.update query, update, {safe: true}, this.display
+    console.log update, query
+    collection.update query, update, { upsert: true, safe: true }, this.display
 
   # Display result of update
   display: (err, result) =>
