@@ -1,0 +1,16 @@
+{
+  "name": "Coffeedia",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "coffee --compile --output build/ src/",
+    "watch": "coffee --watch --compile --output build/ src/",
+    "start": "node build/coffedia.js"
+  },
+  "dependencies": {
+    "express": "3.0.0alpha1",
+    "mongodb": "*",
+    "hulk-hogan": "0.0.6",
+    "coffee-script": "1.3.1"
+  }
+}

@@ -1,5 +1,7 @@
 
 app = require('express').createServer()
+
+# move to a module
 dic = {}
 
 # Routing 
