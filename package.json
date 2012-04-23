@@ -5,7 +5,7 @@
   "scripts": {
     "build": "coffee --compile --output build/ src/",
     "watch": "coffee --watch --compile --output build/ src/",
-    "start": "node build/coffedia.js"
+    "start": "node build/app.js"
   },
   "dependencies": {
     "express": "3.0.0alpha1",

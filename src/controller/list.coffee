@@ -1,10 +1,20 @@
+mongo = require '../service/mongo'
+
 # Handle the list action
 class ListController 
-  constructor: (@dic, @request, @response) ->
+  constructor: (@request, @response) ->
   
+  # /coffee/list
+  #
   # Connect to mongo and call the list function
-  run: =>
-    @dic.mongo.collection 'coffee', this.find
+  list: =>
+    mongo.open @open
+
+  open: (err, db) =>
+    if err?
+      @response.send err.message
+    else
+      db.collection 'coffee', @find
        
   # Query the collection for items
   find: (err, collection) =>
@@ -12,13 +22,14 @@ class ListController
       @response.send err.message
     else
       name = @request.param "name", ''
-      collection.find({ _id: { $regex : '^' + name, $options: 'i' } }).toArray this.display
+      collection.find({ _id: { $regex : '^' + name, $options: 'i' } }).toArray @display
        
   # Display the items 
   display: (err, items) =>
     @response.send items
-    
+
+      
 # Export bootstrap for the controller
-exports.run = (dic, request, response) ->
-  controller = new ListController dic, request, response
-  controller.run()
+module.exports = (request, response) ->
+  controller = new ListController request, response
+  controller.list()

@@ -1,7 +1,8 @@
-
 # MongoDB configuration
-mongodb = require "mongodb"
-server = new mongodb.Server 'localhost', 27017, {auto_reconnect: true}
-connector = new mongodb.Db 'coffee', server 
+app = require '../app'
+mongodb = require 'mongodb'
 
-exports.connect = (callback) -> connector.open callback
+server = new mongodb.Server app.set('mongo host'), app.set('mongo port'), {auto_reconnect: true}
+connector = new mongodb.Db app.set('mongo name'), server 
+
+exports.open = connector.open

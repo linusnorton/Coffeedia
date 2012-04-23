@@ -1,12 +1,20 @@
+mongo = require '../service/mongo'
+
 # Handle the rate action
 class RateController 
-  constructor: (@dic, @request, @response) ->
+  constructor: (@request, @response) ->
   
   # /coffee/rate
   #
   # Connect to mongo and call the list function
-  run: =>
-    @dic.mongo.collection 'coffee', this.insert
+  rate: =>
+    mongo.open @open
+
+  open: (err, db) =>
+    if err?
+      @response.send err.message
+    else
+      db.collection 'coffee', @insert
        
   # Query the collection for items
   insert: (err, collection) =>
@@ -18,7 +26,7 @@ class RateController
     update = { $addToSet: { tags: { $each: tagList }, review: review } }
     query = { _id: @request.param 'name' }
     
-    collection.update query, update, { upsert: true, safe: true }, this.display
+    collection.update query, update, { upsert: true, safe: true }, @display
 
   # Display result of update
   display: (err, result) =>
@@ -28,6 +36,6 @@ class RateController
       @response.send { result: result }
 
 # Export bootstrap for the controller
-exports.run = (dic, request, response) ->
-  controller = new RateController dic, request, response
-  controller.run()
+module.exports = (request, response) ->
+  controller = new RateController request, response
+  controller.rate()

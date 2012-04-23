@@ -1,6 +1,6 @@
 
 # Main request handler
-run = (request, response) ->
+get = (request, response) ->
   response.send('hello world')
 
-exports.run = run;
+module.exports = get;
