@@ -1,6 +1,7 @@
 
-# Main request handler
-get = (request, response) ->
-  response.send('hello world')
 
-module.exports = get;
+# /
+#
+# Main request handler
+module.exports = (request, response) ->
+	response.render 'index'
