@@ -10,6 +10,7 @@ module.exports = ->
     @set 'port', 8080
 
     # Register hulk-hogan (mustache) views
+    # register seems to have changd to engine in version 3
     #@engine '.html', hulk
 
     # Set the view directory and default options
@@ -31,5 +32,7 @@ module.exports = ->
     
     # Mongo configuration
     @set 'mongo host', 'localhost'
-    @set 'mongo port', '27017'
+    @set 'mongo port', 27017
     @set 'mongo name', 'coffee'
+    
+    require '../service/mongo'

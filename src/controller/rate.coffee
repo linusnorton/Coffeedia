@@ -1,4 +1,4 @@
-mongo = require '../service/mongo'
+service = require '../service/container'
 
 # Handle the rate action
 class RateController 
@@ -8,13 +8,7 @@ class RateController
   #
   # Connect to mongo and call the list function
   rate: =>
-    mongo.open @open
-
-  open: (err, db) =>
-    if err?
-      @response.send err.message
-    else
-      db.collection 'coffee', @insert
+      service.db.collection 'coffee', @insert
        
   # Query the collection for items
   insert: (err, collection) =>

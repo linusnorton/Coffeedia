@@ -1,4 +1,4 @@
-mongo = require '../service/mongo'
+service = require '../service/container'
 
 # Handle the list action
 class ListController 
@@ -8,13 +8,7 @@ class ListController
   #
   # Connect to mongo and call the list function
   list: =>
-    mongo.open @open
-
-  open: (err, db) =>
-    if err?
-      @response.send err.message
-    else
-      db.collection 'coffee', @find
+      service.db.collection 'coffee', @find
        
   # Query the collection for items
   find: (err, collection) =>
