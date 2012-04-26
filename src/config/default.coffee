@@ -20,7 +20,7 @@ module.exports = ->
         title: 'Coffeedia'
 
     # Set the app's public directory
-    @use express.static(baseDir + '../public')
+    @use express.static(baseDir + '/public')
     
     # Allow parsing of request bodies and '_method' parameters
     @use express.bodyParser()
