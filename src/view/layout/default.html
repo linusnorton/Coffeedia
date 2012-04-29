@@ -8,7 +8,23 @@
 		<script src="/script/vendor/jquery.mobile-1.1.0.min.js"></script>
 	</head>		
 	<body>
-		{{{body}}}
+
+		<div data-role="page">
+
+			<div data-role="header">
+				<h1>Coffeedia</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="/" data-icon="search" class="ui-btn-active">Find</a></li>
+						<li><a href="/rate" data-icon="star">Rate</a></li>
+					</ul>
+				</div>			
+			</div>
+
+			<div data-role="content">{{{body}}}</div>
+
+		</div>
+
 		<script src="/script/vendor/autocomplete.min.js"></script>
 		<script src="/script/main.js"></script>
 	</body>
