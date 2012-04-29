@@ -1,13 +1,22 @@
-loaded = ->
-    console.log "HERE"
+dom = {}
 
-run = (jQuery) ->
-    jQuery('#coffeeName').autocomplete
-	    target: jQuery('#coffeeList') #// the listview to receive results
-	    source: '/coffee/list' #// URL return JSON data
-	    #link: 'target.html?term=', // link to be attached to each result
-	    minLength: 0 #// minimum length of search string
-	    transition: 'fade' #// page transition, default is fade
-	    callback: loaded #// optional callback function fires upon result selection
+itemSelected = (e) ->
+    console.log e
 
-run $
+select = ->
+    dom.coffeeName = jQuery('#coffeeName')
+    dom.coffeeList = jQuery('#coffeeList')
+
+bind = ->
+    dom.coffeeName.autocomplete
+        target: dom.coffeeList
+        source: '/coffee/list' #// URL return JSON data
+        minLength: 1 #// minimum length of search string
+        transition: 'fade' #// page transition, default is fade
+        callback: itemSelected #// optional callback function fires upon result selection
+
+run = ->
+    select()
+    bind()
+
+jQuery(document).ready( run )
