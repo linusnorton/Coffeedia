@@ -36,7 +36,6 @@ class ListController
             rating.push if num is ratingAverage then 'checked' else ''
 
         item[0].stars = rating
-        console.log item[0].stars
 
         @response.render 'view', item[0]
       
