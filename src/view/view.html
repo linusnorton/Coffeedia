@@ -1,0 +1,12 @@
+<h1>{{_id}}</h1>
+
+{{#tags}}
+    <a href="#{{.}}" data-role="button" data-inline="true" data-mini="true" data-theme="b">{{.}}</a>
+{{/tags}}
+
+<h2>Rating</h2>
+<p>
+    {{#stars}}
+        <input name="star" type="radio" class="star {split:2}" {{.}}/>
+    {{/stars}}
+</p>

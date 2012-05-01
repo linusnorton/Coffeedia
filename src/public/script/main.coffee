@@ -1,22 +1,22 @@
 dom = {}
 
-itemSelected = (e) ->
-    console.log e
-
 select = ->
-    dom.coffeeName = jQuery('#coffeeName')
-    dom.coffeeList = jQuery('#coffeeList')
+    dom.coffeeName = jQuery '#coffeeName' 
+    dom.coffeeList = jQuery '#coffeeList'
+    dom.stars = jQuery '.stars'
 
 bind = ->
     dom.coffeeName.autocomplete
         target: dom.coffeeList
+        link: '/view/'
         source: '/coffee/list' #// URL return JSON data
         minLength: 1 #// minimum length of search string
         transition: 'fade' #// page transition, default is fade
-        callback: itemSelected #// optional callback function fires upon result selection
+
+    dom.stars.rating()
 
 run = ->
     select()
     bind()
 
-jQuery(document).ready( run )
+jQuery('div:jqmData(role="page")').live('pagebeforeshow', run);

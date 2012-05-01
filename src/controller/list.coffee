@@ -38,7 +38,9 @@ class ListController
     display: (err, items) =>
         list = []
         for i in items
-            list.push i._id + ' (' + i.tags.join(', ') + ')'
+            list.push 
+                label: i._id + ' (' + i.tags.join(', ') + ')'
+                value: i._id
 
         @response.send list
       
