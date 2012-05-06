@@ -4,4 +4,4 @@
 #
 # Main request handler
 module.exports = (request, response) ->
-    response.render 'rate'
+    response.render 'rate', rate: true

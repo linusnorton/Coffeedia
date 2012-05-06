@@ -4,4 +4,4 @@
 #
 # Main request handler
 module.exports = (request, response) ->
-	response.render 'index'
+	response.render 'index', home: true

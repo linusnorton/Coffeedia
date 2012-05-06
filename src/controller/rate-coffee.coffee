@@ -15,10 +15,13 @@ class RateController
     review = { }
     username = @request.param 'user'
     score = @request.param 'score', 50
-    tagList = @request.param 'tags', []
+    tags = @request.param 'tags', ''
+    tagList = tags.split ','
+    tagList.map (item, i, arr) -> arr[i] = item.replace /^\s+|\s+$/g, ''
+
     review[username] = score
     update = { $addToSet: { tags: { $each: tagList }, review: review } }
-    query = { _id: @request.param 'name' }
+    query = _id: @request.param 'name'
     
     collection.update query, update, { upsert: true, safe: true }, @display
 
@@ -27,7 +30,7 @@ class RateController
     if err?
       @response.send err.message
     else
-      @response.send { result: result }
+      @response.redirect '/view/' + @request.param 'name', 301
 
 # Export bootstrap for the controller
 module.exports = (request, response) ->

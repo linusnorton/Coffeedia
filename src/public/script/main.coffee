@@ -1,9 +1,14 @@
 dom = {}
 
 select = ->
+    dom.head = jQuery 'head'
     dom.coffeeName = jQuery '#coffeeName' 
     dom.coffeeList = jQuery '#coffeeList'
     dom.stars = jQuery '.stars'
+
+load = ->
+    dom.head.append '<script type="text/javascript" src="/script/vendor/jquery.MetaData.js"></script>'
+    dom.head.append '<script type="text/javascript" src="/script/vendor/jquery.rating.pack.js"></script>'
 
 bind = ->
     dom.coffeeName.autocomplete
@@ -17,6 +22,7 @@ bind = ->
 
 run = ->
     select()
+    load()
     bind()
 
 jQuery('div:jqmData(role="page")').live('pagebeforeshow', run);

@@ -16,8 +16,8 @@
 				<h1>Coffeedia</h1>
 				<div data-role="navbar">
 					<ul>
-						<li><a href="/" data-icon="search" class="ui-btn-active">Find</a></li>
-						<li><a href="/rate" data-icon="star">Rate</a></li>
+						<li><a href="/" data-icon="search" {{#home}}class="ui-btn-active"{{/home}}>Find</a></li>
+						<li><a href="/rate" data-icon="star" {{#rate}}class="ui-btn-active"{{/rate}}>Rate</a></li>
 					</ul>
 				</div>			
 			</div>
@@ -27,8 +27,6 @@
 		</div>
 
 		<script src="/script/vendor/autocomplete.min.js"></script>
-		<script src="/script/vendor/jquery.MetaData.js"></script>
-		<script src="/script/vendor/jquery.rating.pack.js"></script>
 		<script src="/script/main.js"></script>
 	</body>
 </html>
