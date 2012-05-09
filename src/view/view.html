@@ -1,4 +1,4 @@
-<h1>{{_id}}</h1>
+<h1 class="coffeeName">{{_id}}</h1>
 
 {{#tags}}
     <a href="#{{.}}" data-role="button" data-inline="true" data-mini="true" data-theme="b">{{.}}</a>
@@ -7,6 +7,14 @@
 <h2>Rating</h2>
 <p>
     {{#stars}}
-        <input name="star" type="radio" class="star {split:2}" {{.}}/>
+        <input name="star" type="radio" value="{{value}}" class="live star {split:2}" {{checked}}/>
     {{/stars}}
 </p>
+
+<h2>Available from</h2>
+<ul>
+    {{#source}}
+        <li>{{.}}</li>
+    {{/source}}
+</ul>
+

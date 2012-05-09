@@ -33,7 +33,9 @@ class ListController
         ratingAverage = Math.round ratingAverage
 
         for num in [1..10]
-            rating.push if num is ratingAverage then 'checked' else ''
+            rating.push
+                value: num * 10 
+                checked: if num is ratingAverage then 'checked' else ''
 
         item[0].stars = rating
 

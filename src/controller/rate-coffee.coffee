@@ -18,9 +18,16 @@ class RateController
     tags = @request.param 'tags', ''
     tagList = tags.split ','
     tagList.map (item, i, arr) -> arr[i] = item.replace /^\s+|\s+$/g, ''
-
     review[username] = score
-    update = { $addToSet: { tags: { $each: tagList }, review: review } }
+    source = @request.param 'source'
+
+    update = 
+      $addToSet: 
+        tags: { $each: tagList }
+        review: review
+
+    if source? then update.$addToSet.source = source
+
     query = _id: @request.param 'name'
     
     collection.update query, update, { upsert: true, safe: true }, @display
