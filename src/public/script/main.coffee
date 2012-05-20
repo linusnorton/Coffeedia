@@ -33,4 +33,4 @@ run = ->
     bind()
 
 
-jQuery('div:jqmData(role="page")').live('pagebeforeshow', run);
+jQuery(document).live('pageinit', run);
